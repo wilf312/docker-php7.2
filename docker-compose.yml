@@ -57,6 +57,22 @@ redis:
     container_name: ${PROJECT_NAME}_redis
     image: redis:alpine
 
+
+phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+        - PMA_ARBITRARY=1
+        - PMA_HOST=mysql
+        - PMA_USER=homestead
+        - PMA_PASSWORD=secret
+    links:
+        - mysql
+    ports:
+        - 4321:80
+    volumes:
+        - "./phpmyadmin/sessions:/sessions"
+
+
 # ## node
 # node:
 #     container_name: ${PROJECT_NAME}_node
