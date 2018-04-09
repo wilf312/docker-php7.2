@@ -33,7 +33,7 @@ nginx:
         - php-fpm
         # - node
     ports:
-        - "8080:8080"
+        - "9999:8080"
         - "443:443"
     working_dir: /app
 
