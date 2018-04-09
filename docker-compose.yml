@@ -33,7 +33,7 @@ nginx:
         - php-fpm
         # - node
     ports:
-        - "8080:8080"
+        - "9999:8080"
         - "443:443"
     working_dir: /app
 
@@ -56,6 +56,22 @@ mysql:
 redis:
     container_name: ${PROJECT_NAME}_redis
     image: redis:alpine
+
+
+phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+        - PMA_ARBITRARY=1
+        - PMA_HOST=mysql
+        - PMA_USER=homestead
+        - PMA_PASSWORD=secret
+    links:
+        - mysql
+    ports:
+        - 4321:80
+    volumes:
+        - "./phpmyadmin/sessions:/sessions"
+
 
 # ## node
 # node:
